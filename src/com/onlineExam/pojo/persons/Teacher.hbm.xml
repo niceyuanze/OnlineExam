@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.onlineExam.pojo.persons.Teacher" table="teacher" schema="OnlineExam">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+            <generator class="native"/>
+        </id>
+        <property name="username">
+            <column name="username" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="password">
+            <column name="password" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="institute">
+            <column name="institute" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="teacherId">
+            <column name="teacherId" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="name">
+            <column name="name" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="mobilePhone">
+            <column name="mobilePhone" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="position">
+            <column name="position" sql-type="varchar(20)" length="20"/>
+        </property>
+        <set name="questionBases" inverse="true" lazy="false">
+            <key>
+                <column name="teacher_id" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.onlineExam.pojo.persons.QuestionBase"/>
+        </set>
+        <set name="courses" inverse="true" lazy="false">
+            <key>
+                <column name="teacher_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.onlineExam.pojo.persons.Course"/>
+        </set>
+    </class>
+</hibernate-mapping>

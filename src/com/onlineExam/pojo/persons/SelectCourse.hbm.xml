@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.onlineExam.pojo.persons.SelectCourse" table="selectCourse" schema="OnlineExam">
+        <composite-id mapped="true" class="com.onlineExam.pojo.persons.SelectCoursePK">
+            <key-property name="studentId">
+                <column name="student_id" sql-type="int(11)"/>
+            </key-property>
+            <key-property name="courseId">
+                <column name="course_id" sql-type="int(11)"/>
+            </key-property>
+        </composite-id>
+        <property name="id">
+            <column name="id" sql-type="int(11)"/>
+        </property>
+        <property name="paperPath">
+            <column name="paperPath" sql-type="varchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="checkStatus">
+            <column name="checkStatus" sql-type="tinyint(4)"/>
+        </property>
+        <property name="examStatus">
+            <column name="examStatus" sql-type="tinyint(4)"/>
+        </property>
+        <property name="score">
+            <column name="score" sql-type="int(11)" not-null="false"/>
+        </property>
+        <many-to-one name="student" class="com.onlineExam.pojo.persons.Student" lazy="false">
+            <column name="student_id"/>
+        </many-to-one>
+        <many-to-one name="course" class="com.onlineExam.pojo.persons.Course" lazy="false">
+            <column name="course_id"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

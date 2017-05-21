@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.onlineExam.pojo.persons.Question" table="question" schema="OnlineExam">
+        <id name="id">
+            <column name="Id" sql-type="int(11)"/>
+            <generator class="native"/>
+        </id>
+        <property name="type">
+            <column name="type" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="description">
+            <column name="description" sql-type="varchar(500)" length="500"/>
+        </property>
+        <property name="difficultyIndex">
+            <column name="difficultyIndex" sql-type="int(11)"/>
+        </property>
+        <many-to-one name="questionBase" class="com.onlineExam.pojo.persons.QuestionBase" lazy="false">
+            <column name="questionBase_id"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
